@@ -33,8 +33,48 @@ function ContactUs() {
     window.location.href = 'mailto:mkconstruction@gmail.com';
   };
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 py-10">
+      <div className="max-w-3xl mx-auto px-4">
+        {/* --- Contractor Info Section --- */}
+        <div className="mb-8">
+          <div className="flex items-center gap-7 bg-white rounded-2xl shadow-lg p-6 border-l-8 border-yellow-400">
+            <div className="flex-shrink-0 w-36 h-36 bg-yellow-100 rounded-2xl flex items-center justify-center overflow-hidden">
+              <img
+                src="/images/father.jpg"
+                alt="Mr. Munawar Khan Akbar Khan"
+                className="w-full h-full object-contain rounded-2xl"
+                style={{ objectPosition: 'center' }}
+              />
+            </div>
+            <div>
+              <div className="text-lg font-semibold text-gray-800 mb-1 tracking-wide">
+                About Contractor
+              </div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">
+                Mr. Munawar Khan Akbar Khan
+              </div>
+              <div className="flex items-center gap-4 text-gray-600 text-sm font-medium">
+                <span>
+                  <svg className="inline w-5 h-5 text-yellow-500 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" />
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
+                  </svg>
+                  10+ years experience
+                </span>
+                <span className="h-1 w-1 bg-gray-400 rounded-full inline-block mx-2"></span>
+                <span>
+                  <svg className="inline w-5 h-5 text-yellow-500 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 3v4M8 3v4M4 11h16" />
+                  </svg>
+                  100+ sites completed
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* --- Existing Contact Us content below --- */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4 font-['Nova_Round',cursive]">Contact Us</h1>
           <p className="text-gray-600 mb-8">Get in touch with our construction experts</p>
