@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 // Dummy user and handlers for demonstration; replace with your actual logic
 const user = null; // or { email: "admin@example.com" }
 const handleLogout = () => {};
-const handleAdminLoginClick = () => {};
+const handleAdminLoginClick = () => {
+  navigate('/login');
+};
 
 function TopPanel() {
   const [menuOpen, setMenuOpen] = useState(false);

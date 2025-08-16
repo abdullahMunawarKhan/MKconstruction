@@ -138,15 +138,7 @@ function SampleBondPaper() {
             </div>
           )}
 
-          <div className="text-center mt-12">
-            <div className="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Need Custom Bond Documents?</h3>
-              <p className="text-gray-600 mb-6">
-                Our legal team can help you create custom bond documents tailored to your specific project requirements.
-              </p>
-              <button className="btn-primary">Contact Legal Team</button>
-            </div>
-          </div>
+
 
           <div className="text-center mt-8">
             <button 
