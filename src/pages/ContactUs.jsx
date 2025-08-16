@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function ContactUs() {
   const [copyStatus, setCopyStatus] = useState({ phone: false, email: false });
+  const [showImageModal, setShowImageModal] = useState(false);
 
   const copyToClipboard = async (text, type) => {
     try {
@@ -35,14 +36,18 @@ function ContactUs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 py-10">
       <div className="max-w-3xl mx-auto px-4">
-        {/* --- Contractor Info Section --- */}
+        {/* Contractor Info Section */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row items-center gap-5 bg-white rounded-2xl shadow-lg p-4 sm:p-6 border-l-8 border-yellow-400 w-full max-w-2xl mx-auto">
-            <div className="w-full sm:w-36 h-48 sm:h-36 bg-yellow-100 rounded-2xl flex items-center justify-center overflow-hidden mb-4 sm:mb-0">
+            <div
+              className="w-full sm:w-36 h-48 sm:h-36 bg-yellow-100 rounded-2xl flex items-center justify-center overflow-hidden mb-4 sm:mb-0 cursor-pointer"
+              onClick={() => setShowImageModal(true)}
+              title="Click to enlarge"
+            >
               <img
                 src="/images/father.jpg"
                 alt="Mr. Munawar Khan Akbar Khan"
-                className="w-full h-full object-cover rounded-2xl"
+                className="w-full h-full object-cover rounded-2xl transition-transform duration-200 hover:scale-105"
                 style={{ objectPosition: 'center' }}
               />
             </div>
@@ -73,6 +78,29 @@ function ContactUs() {
             </div>
           </div>
         </div>
+
+        {/* Image Modal */}
+        {showImageModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+            <div className="relative bg-white rounded-2xl shadow-lg p-4 max-w-full max-h-full flex flex-col items-center">
+              <button
+                className="absolute top-2 right-2 text-gray-700 bg-white rounded-full p-1 shadow hover:bg-gray-100"
+                onClick={() => setShowImageModal(false)}
+                aria-label="Close"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <img
+                src="/images/father.jpg"
+                alt="Mr. Munawar Khan Akbar Khan"
+                className="max-w-[90vw] max-h-[80vh] rounded-xl"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* --- Existing Contact Us content below --- */}
         <div className="text-center mb-12">
