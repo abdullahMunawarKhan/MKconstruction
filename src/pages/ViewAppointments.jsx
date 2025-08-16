@@ -44,19 +44,37 @@ function ViewAppointments() {
     }
   };
 
-  const handleStatusUpdate = async (id, newStatus) => {
-    try {
-      const { error } = await supabase
-        .from('appointments')
-        .update({ status: newStatus })
-        .eq('id', id);
+const handleStatusUpdate = async (id, newStatus) => {
+  try {
+    // ✅ Optimistically update local state first
+    setAppointments((prev) =>
+      prev.map((appt) =>
+        appt.id === id ? { ...appt, status: newStatus } : appt
+      )
+    );
 
-      if (error) throw error;
-      fetchAppointments();
-    } catch (error) {
-      alert('Error updating appointment status: ' + error.message);
-    }
-  };
+    // ✅ Update in Supabase
+    const { error } = await supabase
+      .from('appointments')
+      .update({ status: newStatus })
+      .eq('id', id);
+
+    if (error) throw error;
+
+    // ✅ Refetch to confirm latest from DB
+    fetchAppointments();
+
+  } catch (error) {
+    alert('Error updating appointment status: ' + error.message);
+  } finally {
+    // ✅ Always close any open modal
+    setShowStatusModal(false);
+    setAppointmentToUpdate(null);
+    setShowCancelModal(false);
+    setAppointmentToCancel(null);
+  }
+};
+
 
 const handleDelete = async (id) => {
   const { error } = await supabase
