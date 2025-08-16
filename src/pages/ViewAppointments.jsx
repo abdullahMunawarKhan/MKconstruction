@@ -7,6 +7,7 @@ function ViewAppointments() {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [filter, setFilter] = useState('pending'); // default filter
 
   useEffect(() => {
     // Check if user is authenticated
@@ -27,7 +28,6 @@ function ViewAppointments() {
       const { data, error } = await supabase
         .from('appointments')
         .select('*')
-        .eq('status', 'pending') // Only fetch pending by default
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -54,8 +54,21 @@ function ViewAppointments() {
     }
   };
 
-  // Only show pending appointments by default
-  const filteredAppointments = appointments;
+  // Filter appointments based on selected filter
+  const filteredAppointments = appointments.filter(app => {
+    if (filter === 'all') return true;
+    return app.status === filter;
+  });
+
+  // Capitalize filter label
+  const filterLabel = (f) => {
+    if (f === 'all') return 'All';
+    if (f === 'pending') return 'Pending';
+    if (f === 'confirmed') return 'Confirmed';
+    if (f === 'completed') return 'Completed';
+    if (f === 'cancelled') return 'Cancelled';
+    return f;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
@@ -87,14 +100,32 @@ function ViewAppointments() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-['Nova_Round',cursive]">Pending Appointment Requests</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-['Nova_Round',cursive]">
+              {filter === 'all' ? 'All Appointments' : `${filterLabel(filter)} Appointment Requests`}
+            </h2>
             <p className="text-gray-600 mb-8">Click a card to view full appointment details</p>
+          </div>
+
+          {/* Filter Section */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {['all', 'pending', 'confirmed', 'completed', 'cancelled'].map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`px-4 py-2 rounded-lg font-semibold border transition 
+                  ${filter === f
+                    ? 'bg-yellow-500 text-white border-yellow-500 shadow'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'}`}
+              >
+                {filterLabel(f)}
+              </button>
+            ))}
           </div>
 
           {/* Appointments List */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6">
-              Pending Appointments ({filteredAppointments.length})
+              {filterLabel(filter)} Appointments ({filteredAppointments.length})
             </h3>
             {loading ? (
               <div className="text-center py-8">
@@ -103,17 +134,39 @@ function ViewAppointments() {
               </div>
             ) : filteredAppointments.length === 0 ? (
               <div className="text-center py-8">
-                <p className="text-gray-600">No pending appointments found.</p>
+                <p className="text-gray-600">No {filterLabel(filter).toLowerCase()} appointments found.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {filteredAppointments.map((appointment) => (
                   <div
                     key={appointment.id}
-                    className="cursor-pointer bg-yellow-50 hover:bg-yellow-100 rounded-xl shadow p-6 flex flex-col items-center transition"
+                    className={`cursor-pointer rounded-xl shadow p-6 flex flex-col items-center transition
+                      ${
+                        appointment.status === 'pending'
+                          ? 'bg-yellow-50 hover:bg-yellow-100'
+                          : appointment.status === 'confirmed'
+                          ? 'bg-blue-50 hover:bg-blue-100'
+                          : appointment.status === 'completed'
+                          ? 'bg-green-50 hover:bg-green-100'
+                          : appointment.status === 'cancelled'
+                          ? 'bg-red-50 hover:bg-red-100'
+                          : 'bg-gray-50 hover:bg-gray-100'
+                      }`}
                     onClick={() => setSelectedAppointment(appointment)}
                   >
-                    <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mb-3">
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3
+                      ${
+                        appointment.status === 'pending'
+                          ? 'bg-yellow-500'
+                          : appointment.status === 'confirmed'
+                          ? 'bg-blue-500'
+                          : appointment.status === 'completed'
+                          ? 'bg-green-500'
+                          : appointment.status === 'cancelled'
+                          ? 'bg-red-500'
+                          : 'bg-gray-400'
+                      }`}>
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
@@ -208,6 +261,14 @@ function ViewAppointments() {
                       Cancel
                     </button>
                   </>
+                )}
+                {selectedAppointment.status === 'confirmed' && (
+                  <button
+                    onClick={() => handleStatusUpdate(selectedAppointment.id, 'completed')}
+                    className="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors flex-1"
+                  >
+                    Mark as Completed
+                  </button>
                 )}
                 <button
                   onClick={() => setSelectedAppointment(null)}
