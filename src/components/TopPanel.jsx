@@ -100,7 +100,7 @@ function TopPanel() {
                 <button
                   onClick={() => {
                     setAdminMenuOpen(false);
-                    navigate('/login');
+                    navigate('/admin-login');
                   }}
                   className="w-full px-5 py-3 text-left hover:bg-yellow-50 transition text-base font-medium"
                 >
