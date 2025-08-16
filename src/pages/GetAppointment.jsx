@@ -201,18 +201,6 @@ function GetAppointment() {
                 />
               </div>
               <div>
-                <label className="form-label">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="form-input w-full"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div>
                 <label className="form-label">Phone Number *</label>
                 <input
                   type="tel"
