@@ -119,7 +119,9 @@ function ViewAppointments() {
                       </svg>
                     </div>
                     <h4 className="font-semibold text-gray-900 text-lg mb-1">{appointment.name}</h4>
-                    <span className="text-sm text-gray-600">{appointment.email}</span>
+                    <span className="text-sm text-gray-600">
+                      {new Date(appointment.created_at).toLocaleDateString()}
+                    </span>
                   </div>
                 ))}
               </div>

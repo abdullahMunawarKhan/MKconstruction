@@ -58,12 +58,12 @@ function GetAppointment() {
     try {
       const { error } = await supabase.from('appointments').insert([{
         name: formData.name,
-        email: formData.email,
+        
         phone: formData.phone,
         project_type: formData.projectType,
         project_size: formData.projectSize,
         timeline: formData.timeline,
-        budget: formData.budget,
+        
         description: formData.description,
         status: 'pending'
       }]);
