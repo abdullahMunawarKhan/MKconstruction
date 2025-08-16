@@ -45,7 +45,7 @@ function ContactUs() {
               title="Click to enlarge"
             >
               <img
-                src="/images/father.jpg"
+                src="/images/father.png"
                 alt="Mr. Munawar Khan Akbar Khan"
                 className="w-full h-full object-cover rounded-2xl transition-transform duration-200 hover:scale-105"
                 style={{ objectPosition: 'center' }}
@@ -93,7 +93,7 @@ function ContactUs() {
                 </svg>
               </button>
               <img
-                src="/images/father.jpg"
+                src="/images/father.png"
                 alt="Mr. Munawar Khan Akbar Khan"
                 className="max-w-[90vw] max-h-[80vh] rounded-xl"
                 style={{ objectFit: 'contain' }}
