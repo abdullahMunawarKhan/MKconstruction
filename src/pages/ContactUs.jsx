@@ -123,7 +123,9 @@ function ContactUs() {
                     className="text-gray-600 hover:text-yellow-600 transition-colors cursor-pointer group"
                   >
                     <div className="flex items-center justify-center gap-2">
-                      <span>mkconstruction@gmail.com</span>
+                      <span className="break-all text-sm max-w-[180px]">
+                        mkconstruction@gmail.com
+                      </span>
                       {copyStatus.email && (
                         <span className="text-green-600 text-sm font-medium">✓ Copied!</span>
                       )}
