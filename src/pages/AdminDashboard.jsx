@@ -56,18 +56,13 @@ function AdminDashboard() {
             
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600">Welcome, {user?.email}</span>
-              <button
-                onClick={handleLogout}
-                className="btn-secondary text-sm px-4 py-2"
-              >
-                Logout
-              </button>
+
             </div>
           </div>
         </div>
       </div>
 
-      {/* Admin Navigation */}
+      {/* Admin Navigation
       <div className="bg-yellow-50 border-b border-yellow-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-wrap items-center gap-4">
@@ -114,7 +109,7 @@ function AdminDashboard() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">

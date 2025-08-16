@@ -169,7 +169,7 @@ function TopPanel() {
                 <button
                   onClick={() => {
                     setMenuOpen(false);
-                    navigate('/login');
+                    navigate('/admin-login');
                   }}
                   className="text-yellow-600 px-6 py-3 text-lg font-semibold hover:bg-yellow-50 text-left"
                 >

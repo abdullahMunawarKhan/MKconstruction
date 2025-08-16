@@ -361,10 +361,17 @@ function Dashboard() {
         {/* Header Section */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-between mb-6">
-            <div></div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 font-['Nova_Round',cursive]">
-              Our Completed Projects
-            </h1>
+
+            <div className="w-full flex flex-col items-center justify-center mb-6">
+              <h1
+                className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-orange-400 to-yellow-700 font-['Nova_Round',cursive] text-center drop-shadow-lg tracking-wide"
+                style={{ letterSpacing: '0.04em' }}
+              >
+                Our Completed Projects
+              </h1>
+              <div className="mt-2 h-1 w-24 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-600 rounded-full shadow"></div>
+            </div>
+
             {isAdmin && (
               <button
                 onClick={() => navigate('/edit-sites')}
