@@ -152,7 +152,7 @@ function ContactUs() {
                   >
                     <div className="flex items-center justify-center gap-2">
                       <span className="break-all text-sm max-w-[180px]">
-                        mkconstruction@gmail.com
+                        mkconstruction9922@gmail.com
                       </span>
                       {copyStatus.email && (
                         <span className="text-green-600 text-sm font-medium">✓ Copied!</span>
@@ -179,9 +179,9 @@ function ContactUs() {
               <div className="text-center">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Hours</h3>
                 <p className="text-gray-600 mb-6">
-                  Monday - Friday: 8:00 AM - 6:00 PM<br />
-                  Saturday: 9:00 AM - 4:00 PM<br />
-                  Sunday: Closed
+                  monday - thursday: 9:00 AM - 10:00 PM<br />
+                  saturday & Sunday: 9:00 AM - 8:00 PM
+                  friday : holiday<br />
                 </p>
                 
                 <button 
