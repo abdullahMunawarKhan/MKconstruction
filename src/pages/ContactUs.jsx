@@ -180,8 +180,8 @@ function ContactUs() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Hours</h3>
                 <p className="text-gray-600 mb-6">
                   monday - thursday: 9:00 AM - 10:00 PM<br />
-                  saturday & Sunday: 9:00 AM - 8:00 PM
-                  friday : holiday<br />
+                  saturday & Sunday: 9:00 AM - 8:00 PM<br />
+                  friday : holiday
                 </p>
                 
                 <button 
